@@ -13,8 +13,8 @@ public class HeroObject extends CharacterObject {
 	private int mana;
 	//TODO: ItemSet: ArrayList 
 	
-	public HeroObject(float posX, float posY, int width,int height, GameManager gameManager) {
-		super(posX, posY,  CharacterObject.DEFAULT_WIDTH, CharacterObject.DEFAULT_HEIGHT, gameManager);
+	public HeroObject(float posX, float posY, int width,int height, int health,GameManager gameManager) {
+		super(posX, posY,  CharacterObject.DEFAULT_WIDTH, CharacterObject.DEFAULT_HEIGHT,health,gameManager);
 		mana = 0;
 		food = 0;
 	}

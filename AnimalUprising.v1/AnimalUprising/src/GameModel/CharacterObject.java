@@ -11,14 +11,12 @@ public abstract class CharacterObject extends GameObject
 	public static final int DEFAULT_WIDTH = 64;
 	public static final int DEFAULT_HEIGHT = 64;
 
-	private int health;
 	protected float moveX;
 	protected float moveY;
 	protected float speed;
 	
-	public CharacterObject(float posX, float posY, int width,int height, GameManager gameManager) {
-		super(posX, posY, width, height, gameManager);
-		health = maxHealth;
+	public CharacterObject(float posX, float posY, int width,int height, int health ,GameManager gameManager) {
+		super(posX, posY, width, height, health ,gameManager);
 		moveX = 0;
 		moveY = 0;
 		speed = movementSpeed;
@@ -29,7 +27,6 @@ public abstract class CharacterObject extends GameObject
 		posX += moveX;
 		//posY += moveY;
 	}
-	
 
 	public static float getMovementSpeed() {
 		return movementSpeed;
@@ -82,8 +79,4 @@ public abstract class CharacterObject extends GameObject
 	public void setMoveY(float moveY) {
 		this.moveY = moveY;
 	}
-	
-	
-	
-	
 }

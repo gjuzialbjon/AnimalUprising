@@ -34,7 +34,6 @@ public class GameManager implements Runnable {
 		this.title = title;
 		this.inputManager = inputManager;
 	}
-	
 	private void init()
 	{
 		gameEngine = new GameEngine(title, width, height);
@@ -47,9 +46,9 @@ public class GameManager implements Runnable {
 		States.setState(gameState);
 
 	}
-
 	@Override
-	public void run() {
+	public void run() 
+	{
 		init();
 		
 		int fps = 60;
@@ -58,8 +57,7 @@ public class GameManager implements Runnable {
 		long currentTime;
 		long lastTime = System.nanoTime();
 		
-		
-		
+
 		//Game Loop
 		while(running)
 		{
@@ -77,9 +75,6 @@ public class GameManager implements Runnable {
 		stop();
 		
 	}
-	
-	int posX = 0;
-	
 	private void update()
 	{
 		inputManager.update();
@@ -132,16 +127,7 @@ public class GameManager implements Runnable {
 		}
 	}
 	
-	
-	
 	public InputManager getInputManager() {
 		return inputManager;
 	}
-
-	public void setInputManager(InputManager inputManager) {
-		this.inputManager = inputManager;
-	}
-	
-	
-
 }

@@ -8,8 +8,8 @@ import GameControl.ImageManager;
 public class CastleObject extends GameObject 
 {
 
-	public CastleObject(float posX, float posY, int width,int height, GameManager gameManager) {
-		super(posX, posY, width, height, gameManager);
+	public CastleObject(float posX, float posY, int width,int height, int health,GameManager gameManager) {
+		super(posX, posY, width, height, health,gameManager);
 		
 	}
 	

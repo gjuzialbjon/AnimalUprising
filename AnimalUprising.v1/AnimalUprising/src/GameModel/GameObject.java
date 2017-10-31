@@ -9,19 +9,19 @@ public abstract class GameObject
 	protected int height, width, health;
 	protected GameManager gameManager;
 	
-	public GameObject(float posX, float posY, int width,int height, GameManager gameManager)
+	public GameObject(float posX, float posY, int width,int height, int health, GameManager gameManager)
 	{
 		this.posX = posX;
 		this.posY = posY;
 		this.width = width;
 		this.height = height;
+		this.health = health;
 		this.gameManager = gameManager;
 	}
 	
 	public abstract void update();
 	
 	public abstract void render(Graphics g);
-	
 	
 	//Getters and Setters
 	public float getPosX() {
