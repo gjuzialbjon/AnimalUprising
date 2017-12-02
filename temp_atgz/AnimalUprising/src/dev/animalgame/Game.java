@@ -2,15 +2,9 @@ package dev.animalgame;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
-import javax.xml.transform.Templates;
-
 import dev.animalgame.display.Display;
 import dev.animalgame.gfx.Assets;
 import dev.animalgame.gfx.GameCamera;
-import dev.animalgame.gfx.ImageLoader;
-import dev.animalgame.levels.Level;
 import dev.animalgame.states.GameMenuState;
 import dev.animalgame.states.GameState;
 import dev.animalgame.states.HowToPlayState;
@@ -216,6 +210,11 @@ public class Game implements Runnable{
 		return gameHeight;
 	}
 	
+	
+	public static void main(String[] args) {
+		Game.getGame().start();
+		
+	}	
 	
 
 }

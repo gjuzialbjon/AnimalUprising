@@ -6,21 +6,23 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import dev.animalgame.Game;
+import dev.animalgame.gfx.Assets;
 
 public abstract class Entity {
 	
-	protected Game game;
+	protected Game game=Game.getGame();
 	
 	protected float xpos,ypos;
 	protected int width,height;
 	protected Rectangle collisionBox;
 	
-	protected BufferedImage texture;//TODO make this equal to a placeholder image so debugging becomes easier
+	protected BufferedImage texture = Assets.placeholder;//This is mainly for debugging
+	public static final int DEFAULT_WIDTH = 0,
+							DEFAULT_HEIGHT = 0;
 	
 	
 	
 	public Entity(float x, float y, int width, int height){
-		game = Game.getGame();//TODO do this in the field part maybe? (aka the default field value)
 		xpos=x;
 		ypos=y;		
 		this.width = width;
@@ -30,10 +32,19 @@ public abstract class Entity {
 	}
 	
 	
+	/**
+	 * This constructor uses the default width and height (which are 0,0 at the time of writing this comment) 
+	 * 
+	 **/
+	public Entity(float x, float y){
+		this(x,y,DEFAULT_WIDTH,DEFAULT_HEIGHT);
+	}
+	
 	
 	
 	
 	public abstract void tick();
+	
 	public void render(Graphics g){
 		//updateCurrentTexture();//TODO make an interface for animated entities that have this method, override their render method so that they do this first.
 		g.drawImage(texture, (int)(xpos-game.getGameCamera().getxOffset())

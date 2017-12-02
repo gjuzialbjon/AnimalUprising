@@ -2,6 +2,7 @@ package dev.animalgame.gfx;
 
 import dev.animalgame.Game;
 import dev.animalgame.entities.Entity;
+import dev.animalgame.levels.Level;
 
 public class GameCamera {
 	
@@ -26,6 +27,13 @@ public class GameCamera {
 	public void centerOnEntity(Entity focusEntity){
 		xOffset = focusEntity.getXpos() - game.getGameWidth()/2 + focusEntity.getWidth()/2;//TODO add/sub half of the focus entity width too if required
 		//yOffset = focusEntity.getYpos() - game.getGameHeight()/2; //Not sure if we want to center on the Y axis. decide later.
+		
+		
+		//this block is for not showing beyond the edge of the level
+		if(xOffset<0)
+			xOffset=0;
+		else if(xOffset>Level.MAPWIDTH-game.getGameWidth())
+			xOffset=Level.MAPWIDTH-game.getGameWidth();
 	}
 	
 	

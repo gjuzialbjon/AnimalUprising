@@ -17,10 +17,6 @@ public class Dog extends Creature {
 
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

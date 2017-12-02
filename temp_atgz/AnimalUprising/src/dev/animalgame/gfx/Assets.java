@@ -9,6 +9,8 @@ public class Assets {
 	public static BufferedImage floor;
 
 	public static BufferedImage horse_right_still;
+
+	public static BufferedImage placeholder;
 	
 	private static final int width = 128, height =128; // w-h of the tiles in the sprite sheet. make multiple different types of this if we decide to make different spritesheets/image sizes
 	
@@ -20,6 +22,8 @@ public class Assets {
 		horse_right_still = sheet.crop(width*2, 0, width, 84);
 		
 		floor = ImageLoader.loadImage("/textures/floor.png");
+		
+		placeholder = ImageLoader.loadImage("/textures/placeholder.png");
 	}
 
 }

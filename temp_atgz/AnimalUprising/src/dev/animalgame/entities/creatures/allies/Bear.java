@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import dev.animalgame.entities.creatures.Creature;
 
-public class Bear extends Creature {
+public class Bear extends Creature implements Ally{
 
 	
 	public Bear(float x, float y) {
@@ -14,14 +14,13 @@ public class Bear extends Creature {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		Ally.super.tick();
 
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+	
 
-	}
+
+
 
 }

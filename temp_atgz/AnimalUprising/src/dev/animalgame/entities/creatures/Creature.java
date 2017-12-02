@@ -1,32 +1,32 @@
 package dev.animalgame.entities.creatures;
 
-import java.awt.Graphics;
+import javax.xml.ws.Holder;
 
 import dev.animalgame.entities.Entity;
 import dev.animalgame.levels.Level;
 
 public abstract class Creature extends Entity {
 	
-	public static final int DEFAULT_CREATURE_HP = 10;
-	public static final float DEFAULT_CREATURE_SPEED = 3.0f;
-	public static final int DEFAULT_CREATURE_WIDTH = 64,
-							DEFAULT_CREATURE_HEIGHT = 64;
+	public static final int DEFAULT_HP = 10;
+	public static final float DEFAULT_SPEED = 6.0f;
+	public static final int DEFAULT_WIDTH = 64,
+							DEFAULT_HEIGHT = 64;
 	
 	protected int health;
-	protected float speed=DEFAULT_CREATURE_SPEED;
+	protected float speed=DEFAULT_SPEED;
 	protected float xMove,yMove;
 	
 	/**
 	 *@deprecated this usually results with a faulty collision box if the collision box is not manually edited after init. Try not to use.
 	 */
 	public Creature(float x, float y) {
-		this(x,y,DEFAULT_CREATURE_WIDTH,DEFAULT_CREATURE_HEIGHT);
+		this(x,y,DEFAULT_WIDTH,DEFAULT_HEIGHT);
 		
 	}
 	
 	public Creature(float x, float y, int width,int height) {
 		super(x, y, width, height);
-		this.health = DEFAULT_CREATURE_HP; //TODO this can change, do health=default in the field part if you want
+		this.health = DEFAULT_HP; //TODO this can change, do health=default in the field part if you want
 		//this.speed = DEFAULT_CREATURE_SPEED; // not necessary since its set on field.
 	}
 	
