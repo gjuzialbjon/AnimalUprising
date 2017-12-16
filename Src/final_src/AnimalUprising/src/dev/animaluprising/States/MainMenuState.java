@@ -8,8 +8,9 @@ import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
 
-
-//placeholder class
+/**
+ * @author Ata Gun Ogun
+ */
 public class MainMenuState extends State {
 
 	

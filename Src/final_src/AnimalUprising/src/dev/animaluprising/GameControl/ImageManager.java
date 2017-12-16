@@ -1,6 +1,6 @@
 
 /*
- *  Author: Bora Ecer
+ *  Author: Bora Ecer,Ata Gun Ogun
  *  Date: 1 November 2017
  *  Version: 12.12.2017
  *  ImageMAnager is the class for reading the images and setting them as static BufferedImage variables,

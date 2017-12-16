@@ -3,7 +3,9 @@ package dev.animaluprising.States;
 import java.awt.Graphics;
 
 import dev.animaluprising.GameControl.GameManager;
-
+/**
+ * @author Ata Gun Ogun
+ */
 public abstract class State {
 	
 	

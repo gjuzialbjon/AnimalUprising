@@ -7,7 +7,11 @@ import dev.animaluprising.UIManagement.ClickAction;
 import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
-// placeholder class,
+/**
+ * @author Ata Gun Ogun
+ * 
+ * Pause screen and its elements are defined here
+ * */
 public class PauseState extends State {
 	private UIManager uiManager;
 

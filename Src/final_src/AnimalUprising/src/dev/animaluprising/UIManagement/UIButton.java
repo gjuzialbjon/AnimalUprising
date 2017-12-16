@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 
 import dev.animaluprising.GameControl.ImageManager;
 
+/**
+ * @author Ata Gun Ogun
+ */
 public class UIButton extends UIComponent {
 //basip drag out etme olayi ekle
 	

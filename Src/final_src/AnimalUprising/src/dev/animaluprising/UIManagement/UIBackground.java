@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 import dev.animaluprising.GameControl.GameManager;
 
 
-
+/**
+ * @author Ata Gun Ogun
+ */
 public class UIBackground extends UIImage {
 
 	public UIBackground(BufferedImage texture) {

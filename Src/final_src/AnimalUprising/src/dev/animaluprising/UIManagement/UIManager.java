@@ -5,7 +5,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import dev.animaluprising.GameControl.GameManager;
-
+/**
+ * @author Ata Gun Ogun
+ */
 public class UIManager {
 	
 	private GameManager game=GameManager.getGame();

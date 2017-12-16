@@ -1,5 +1,5 @@
 /*
- * Author: Bora Ecer
+ * Author: Bora Ecer, Ata Gun Ogun
  * GameState class
  * Date: 1 November 2017
  * Version: 13.12.2017
@@ -148,6 +148,7 @@ public class GameState extends State
 			LevelManager.unlockedLevels= Math.max(LevelManager.currentLevel+1,LevelManager.unlockedLevels);
 			State.setState(game.getVictoryState());
 			game.setGameState(new GameState());
+			game.setCoin(game.getCoin()+200*LevelManager.currentLevel);
 		}
 
 		//if game ended with hero being dead, changes state to game over state.
@@ -155,7 +156,8 @@ public class GameState extends State
 		{
 			State.setState(game.getGameOverState());
 			game.setGameState(new GameState());
-			graphics.drawString("GAME OVER", 150, 150);
+
+			//graphics.drawString("GAME OVER", 150, 150);
 		}
 		
 		graphics.fillRect(118, 1, (int)(162*((hero.getHealth()+0f)/ShopManager.getMaxHeroHealth())), 25);

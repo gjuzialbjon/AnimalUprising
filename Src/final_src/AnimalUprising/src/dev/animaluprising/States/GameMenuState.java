@@ -8,7 +8,9 @@ import dev.animaluprising.UIManagement.ClickAction;
 import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
-// placeholder class, this class is for the level selection screen
+/**
+ * @author Ata Gun Ogun
+ */
 public class GameMenuState extends State {
 
 	private UIManager uiManager;

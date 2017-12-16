@@ -9,7 +9,9 @@ import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
 import dev.animaluprising.UIManagement.UITextButton;
-// placeholder class, this should heavily use ShopManager(not written yet at the time of adding this comment)
+/**
+ * @author Ata Gun Ogun
+ */
 public class ShopState extends State{
 
 	private UIManager uiManager;

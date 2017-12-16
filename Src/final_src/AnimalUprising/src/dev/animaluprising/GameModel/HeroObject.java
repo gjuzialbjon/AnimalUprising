@@ -1,5 +1,5 @@
 /*
- * @ author: Bora Ecer
+ * @ author: Bora Ecer,Ata Gun Ogun
  * @ date: 1 November 2017
  * @ version: 13.12.2017 
  * Class that contains the attributes of Hero Object.

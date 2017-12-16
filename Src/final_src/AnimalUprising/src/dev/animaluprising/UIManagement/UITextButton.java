@@ -3,6 +3,9 @@ package dev.animaluprising.UIManagement;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Ata Gun Ogun
+ */
 public class UITextButton extends UIButton {
 	
 	String text;

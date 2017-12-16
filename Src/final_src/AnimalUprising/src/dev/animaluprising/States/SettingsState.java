@@ -10,6 +10,12 @@ import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
 import dev.animaluprising.UIManagement.UITextButton;
 
+/**
+ *	@author Ata Gun Ogun
+ *
+ * this class defines the settings screen
+ * 
+ */
 public class SettingsState extends State {
 
 	private UIManager uiManager;

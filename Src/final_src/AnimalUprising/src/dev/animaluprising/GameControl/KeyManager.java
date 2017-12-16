@@ -1,5 +1,5 @@
 /*
- * Author: Bora Ecer
+ * Author: Bora Ecer, Ata Gun Ogun
  * Date: 1 November 2017
  * Version: v1
  * InputManager is the class for getting the inputs from the user.

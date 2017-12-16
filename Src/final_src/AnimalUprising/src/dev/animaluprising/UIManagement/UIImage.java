@@ -2,7 +2,9 @@ package dev.animaluprising.UIManagement;
 
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-
+/**
+ * @author Ata Gun Ogun
+ */
 public class UIImage extends UIComponent {
 
 	public UIImage(float x, float y, int w, int h,BufferedImage texture) {

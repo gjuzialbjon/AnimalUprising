@@ -7,7 +7,9 @@ import dev.animaluprising.UIManagement.ClickAction;
 import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
-
+/**
+ *	@author Ata Gun Ogun 
+ */
 public class GameOverState extends State {
 
 	private UIManager uiManager;
