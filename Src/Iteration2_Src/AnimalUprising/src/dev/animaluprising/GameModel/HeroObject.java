@@ -1,5 +1,5 @@
 /*
- * @ author: Bora Ecer
+ * @ author: Bora Ecer,Ata Gun Ogun
  * @ date: 1 November 2017
  * @ version: 13.12.2017 
  * Class that contains the attributes of Hero Object.
@@ -76,7 +76,7 @@ public class HeroObject extends CharacterObject implements Ally {
 			//The divisions are done to slow the process.
 			if(currencyTick/5 % 2 == 0 )
 			{
-				if(mana < ShopManager.getMaxLHeroMana())
+				if(mana < ShopManager.getMaxHeroMana())
 				{
 					setMana(getMana()+1); 
 				}
@@ -277,7 +277,7 @@ public class HeroObject extends CharacterObject implements Ally {
 			//Decreases the current mana.
 			setMana(getMana()-ShopManager.getSpeedRequiredMana());
 			//Adds a new SpeedBuffSkill object to alliesList in ObjectManager
-			game.getObjectManager().addObject(new SpeedBuffSkill(posX-20, posY-100, width+40, height+200));
+			game.getObjectManager().addObject(new SpeedBuffSkill(posX-10, posY, width+20, height+50));
 			//Sets casting true, so that the casting animation can be rendered.
 			casting = true;
 		}

@@ -223,33 +223,32 @@ public class CollisionManager {
 				{
 					Ally target = allies.get(i);
 					String className = ally.getClass().getName();
-
-					if(target instanceof Bear)
+					
+					if(target instanceof Bear && ((Bear)target).getHealth() < ShopManager.getMaxBearHealth())
 					{
-						System.out.println("health:" + ((Bear)target).getHealth());
-						return ((Bear)target).updateHealth(ShopManager.getDamage(className));
+						return ((Bear)target).updateHealth(ShopManager.getHealAmount());
 
 					}
-					else if(target instanceof Dog)
+					else if(target instanceof Dog && ((Dog)target).getHealth() < ShopManager.getMaxDogHealth())
 					{
 
-						return ((Dog)target).updateHealth(ShopManager.getDamage(className));
+						return ((Dog)target).updateHealth(ShopManager.getHealAmount());
 					}
 
 
-					else if(target instanceof Monkey)
+					else if(target instanceof Monkey && ((Monkey)target).getHealth() < ShopManager.getMaxMonkeyHealth())
 					{
 
-						return ((Monkey)target).updateHealth(ShopManager.getDamage(className));
+						return ((Monkey)target).updateHealth(ShopManager.getHealAmount());
 					}
 
-					else if(target instanceof Tortoise)
+					else if(target instanceof Tortoise && ((Tortoise)target).getHealth() < ShopManager.getMaxTortoiseHealth())
 					{
-						return ((Tortoise)target).updateHealth(ShopManager.getDamage(className));
+						return ((Tortoise)target).updateHealth(ShopManager.getHealAmount());
 					}
-					else if(target instanceof HeroObject)
+					else if(target instanceof HeroObject && ((HeroObject)target).getHealth() < ShopManager.getMaxHeroHealth())
 					{
-						return ((HeroObject)target).updateHealth(ShopManager.getDamage(className));
+						return ((HeroObject)target).updateHealth(ShopManager.getHealAmount());
 					}	
 					return true;
 				}

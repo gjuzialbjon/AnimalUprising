@@ -36,15 +36,17 @@ public class ShopManager
 	private static int speedRequiredMana = 20;
 	private static int hailRequiredMana = 20;
 	private static int ravenRequiredMana = 20;
-	private int dogGold = 50;
-	private int bearGold = 50;
-	private int monkeyGold = 50;
-	private int tortoiseGold = 50;
-	private int healGold = 50;
-	private int speedGold = 50;
 	
-	private int ravenGold = 50;
-	private int hailGold = 50;
+	public int dogGold = 50;
+	public int bearGold = 50;
+	public int monkeyGold = 50;
+	public int tortoiseGold = 50;
+	public int healGold = 50;
+	public int speedGold = 50;
+	
+	public int ravenGold = 50;
+	public int hailGold = 50;
+	
 	public ShopManager()
 	{
 		
@@ -294,7 +296,7 @@ public class ShopManager
 	public static void setMaxHeroHealth(int maxHeroHealth) {
 		ShopManager.maxHeroHealth = maxHeroHealth;
 	}
-	public static int getMaxLHeroMana() {
+	public static int getMaxHeroMana() {
 		return maxLHeroMana;
 	}
 	public static void setMaxLHeroMana(int maxLHeroMana) {

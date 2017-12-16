@@ -15,7 +15,7 @@ public class SoundManager
 	public SoundManager()
 	{
 		try {
-			backgroundStream = getClass().getResourceAsStream("/Sounds/music.wav");
+			backgroundStream = getClass().getResourceAsStream("/Sounds/backgroundMusic.wav");
 			backgroundMusic = new AudioStream(backgroundStream);
 			
 		}

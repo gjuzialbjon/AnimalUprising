@@ -9,6 +9,9 @@ import dev.animaluprising.GameControl.GameManager;
 import dev.animaluprising.GameControl.ImageManager;
 
 //notes: render method should be overwritten for container components
+/**
+ * @author Ata Gun Ogun
+ */
 public abstract class UIComponent {
 	
 	GameManager game=GameManager.getGame();

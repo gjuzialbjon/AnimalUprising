@@ -29,7 +29,7 @@ public class GameEngine {
 		frame = new JFrame(title);
 		frame.setSize(width,height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null); //opens the display in the center of the screen
 		frame.setVisible(true);
 		frame.setVisible(true);

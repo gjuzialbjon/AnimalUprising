@@ -8,8 +8,9 @@ import dev.animaluprising.UIManagement.UIBackground;
 import dev.animaluprising.UIManagement.UIButton;
 import dev.animaluprising.UIManagement.UIManager;
 
-
-//placeholder class
+/**
+ * @author Ata Gun Ogun
+ */
 public class MainMenuState extends State {
 
 	
@@ -65,12 +66,12 @@ public class MainMenuState extends State {
 		
 		
 		
-		uiManager.addComponent(new UIButton(100, 100, 100, 50,new ClickAction() {	
+		/*uiManager.addComponent(new UIButton(100, 100, 100, 50,new ClickAction() {	
 			@Override
 			public void onClick() {
 				State.setState(game.getGameState());			
 			}
-		}));
+		}));*/
 	}
 
 	@Override

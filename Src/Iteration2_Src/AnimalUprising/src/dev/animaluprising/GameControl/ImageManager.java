@@ -1,6 +1,6 @@
 
 /*
- *  Author: Bora Ecer
+ *  Author: Bora Ecer,Ata Gun Ogun
  *  Date: 1 November 2017
  *  Version: 12.12.2017
  *  ImageMAnager is the class for reading the images and setting them as static BufferedImage variables,
@@ -16,7 +16,9 @@ import javax.imageio.ImageIO;
 
 public class ImageManager
 {
-	public static BufferedImage castleImage;
+	public static BufferedImage crusader_sheet = loadImage("/Images/crusader_sprite.PNG");
+	public static BufferedImage dog_sheet = loadImage("/Images/dog_sprite.PNG");
+	public static BufferedImage heroImage, enemyImage, catImage, castleImage;
 	public static BufferedImage[] dogImages = new BufferedImage[18];
 	public static BufferedImage[] heroImages = new BufferedImage[16];
 	public static BufferedImage[] infantryImages = new BufferedImage[14];
@@ -43,7 +45,18 @@ public class ImageManager
 	public static BufferedImage placeholder;
 	public static BufferedImage floor; 
 	public static BufferedImage victoryScreen;
-	public static BufferedImage mainMenuButton; 
+	public static BufferedImage mainMenuButton;
+	
+	
+	public static BufferedImage pauseBackground;
+	public static BufferedImage resumeButton;
+	public static BufferedImage resetLevelButton;
+	public static BufferedImage quitToMain;
+	public static BufferedImage shopBackground; 
+	
+	public static BufferedImage shadow;
+	public static BufferedImage blankButton;
+	public static BufferedImage gameOverScreen;
 			
 			
 	
@@ -225,12 +238,23 @@ public class ImageManager
 		levelButton4 =  loadImage("/textures/gamemenu/level4.png");
 		levelButton5 =  loadImage("/textures/gamemenu/level5.png");
 		
-		gameGuide =  loadImage("/textures/howto/howToPlay.png");
+		gameGuide =  loadImage("/textures/howto/howToPlay.jpg");
 		
 		settingsBackground =  loadImage("/textures/settings/background.png");
 		victoryScreen = loadImage("/textures/victory/background.png");
 		mainMenuButton = loadImage("/textures/victory/mainMenuButton.png");
 		
 		
+		pauseBackground = loadImage("/textures/pause/background.PNG");
+		resetLevelButton = loadImage("/textures/pause/restart.PNG");
+		resumeButton = loadImage("/textures/pause/resume.PNG");
+		quitToMain = loadImage("/textures/pause/quitToMain.PNG");
+		
+		shopBackground = loadImage("/textures/shop/background.png");
+		
+		shadow = loadImage("/textures/commons/shadow.png");
+		blankButton = loadImage("/textures/commons/blankButton.png");
+		
+		gameOverScreen = loadImage("/textures/gameover/background.png");
 	}
 }

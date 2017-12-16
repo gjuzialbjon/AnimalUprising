@@ -19,6 +19,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.animaluprising.States.GameMenuState;
+import dev.animaluprising.States.GameOverState;
 import dev.animaluprising.States.GameState;
 import dev.animaluprising.States.HowToPlayState;
 import dev.animaluprising.States.MainMenuState;
@@ -57,6 +58,7 @@ public class GameManager implements Runnable{
 	
 	private ObjectManager objectManager;
 	private CollisionManager collisionManager;
+	private State gameOverState;
 
 	
 	private GameManager() {
@@ -102,7 +104,7 @@ public class GameManager implements Runnable{
 		mainMenuState = new MainMenuState( );
 		shopState = new ShopState( );
 		victoryState = new VictoryState();
-	
+		gameOverState = new GameOverState();
 		
 		
 		State.setState(mainMenuState); 
@@ -226,6 +228,12 @@ public class GameManager implements Runnable{
 	}
 	
 
+	public SoundManager getSoundManager() {
+		return soundManager;
+	}
+
+
+
 	/**
 	 * @return the gameWidth
 	 */
@@ -341,6 +349,10 @@ public class GameManager implements Runnable{
 		return victoryState;
 	}
 	
+	public State getGameOverState() {
+		return gameOverState;
+	}
+	
 	public int getCoin() {
 		return coin;
 	}
@@ -348,6 +360,10 @@ public class GameManager implements Runnable{
 	public void setCoin(int coin) {
 		this.coin = coin;
 	}
+
+
+
+
 
 
 
