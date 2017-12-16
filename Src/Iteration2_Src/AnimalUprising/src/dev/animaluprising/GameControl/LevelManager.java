@@ -1,16 +1,37 @@
+/*
+ * Author: Bora Ecer
+ * Date: 10.12.2017
+ * Version: 16.12.2017
+ * Class for managing the levels,
+ * Basically, it increases the base healths of the objects in each level.
+ */
 package dev.animaluprising.GameControl;
 
 public class LevelManager 
 {
-	private static int maxCastleHealth = 200;
-	private static int maxCrusaderHealth = 200;
+	public static int unlockedLevels = 1;
+	public static int currentLevel = 1;
+	private static int maxCastleHealth = 1000;
+	private static int maxCrusaderHealth = 800;
 	private static int maxInfantryHealth = 600;
-	private static int maxKnightHealth = 600;
-	
-	private static int crusaderDamage = 15;
+	private static int maxKnightHealth = 700;	
+	private static int crusaderDamage = 20;
 	private static int knightDamage = 15;
-	private static int infantryDamage = 15;
+	private static int infantryDamage = 10;
+	private static int increasedHealth = 50;
 	
+	public static void increaseMaxUnlockedLevel()
+	{
+		if(unlockedLevels < 5)
+		{
+			unlockedLevels +=1; 
+		}
+	}
+	public static void setCurrentLevel(int level)
+	{
+		currentLevel = level;
+	}
+	//retuns damage of the given object
 	public static int getDamage(String objectName)
 	{
 		if(objectName.equals("dev.animaluprising.GameModel.Crusader") )
@@ -30,27 +51,27 @@ public class LevelManager
 			return 0;
 	}
 	
-	
+	//Getters and Setters
 	public static int getMaxCastleHealth() {
-		return maxCastleHealth;
+		return (getIncreasedHealth()*currentLevel)+maxCastleHealth;
 	}
 	public static void setMaxCastleHealth(int maxCastleHealth) {
 		LevelManager.maxCastleHealth = maxCastleHealth;
 	}
 	public static int getMaxCrusaderHealth() {
-		return maxCrusaderHealth;
+		return (getIncreasedHealth()*currentLevel)+maxCrusaderHealth;
 	}
 	public static void setMaxCrusaderHealth(int maxCrusaderHealth) {
 		LevelManager.maxCrusaderHealth = maxCrusaderHealth;
 	}
 	public static int getMaxInfantryHealth() {
-		return maxInfantryHealth;
+		return (getIncreasedHealth()*currentLevel)+maxInfantryHealth;
 	}
 	public static void setMaxInfantryHealth(int maxInfantryHealth) {
 		LevelManager.maxInfantryHealth = maxInfantryHealth;
 	}
 	public static int getMaxKnightHealth() {
-		return maxKnightHealth;
+		return (getIncreasedHealth()*currentLevel)+maxKnightHealth;
 	}
 	public static void setMaxKnightHealth(int maxKnightHealth) {
 		LevelManager.maxKnightHealth = maxKnightHealth;
@@ -73,6 +94,8 @@ public class LevelManager
 	public static void setInfantryDamage(int infantryDamage) {
 		LevelManager.infantryDamage = infantryDamage;
 	}
-	
-	
+	public static int getIncreasedHealth()
+	{
+		return increasedHealth;
+	}
 }

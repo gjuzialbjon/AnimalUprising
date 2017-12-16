@@ -1,9 +1,9 @@
 /*
  * Author: Bora Ecer
  * Date: 1 November 2017
- * Version: v1
+ * Version: 12.12.2017
  * Interface for representing the Ranged classes.
- * interface will be improved. It is a non-factor for now.
+ * includes getRangedCollisionRectangle method
  */
 
 package dev.animaluprising.GameModel;

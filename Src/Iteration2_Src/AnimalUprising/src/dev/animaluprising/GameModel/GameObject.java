@@ -1,15 +1,14 @@
 /*
  * Author: Bora Ecer
  * Date: 1 November 2017
- * Version: v1
+ * Version: 10.12.2017
  * Class that contains the attributes of Game Object.
  * Game Object is the main object in the GameModel, everything else is either inheriting from it directly,
  * or is an extention of one of GameObject's child classes. GameObject is an Abstract class 
  * which has update() and render() methods as abstract methods. it has several variables like x, y coordiantes of the object 
  * and height, width of the object image. GameObject, has a GameManager object and passes it through its child classes
  * which enables the GameModel package connecting to the GameControl package, thus enabling communication between two of the main subclasses.
- * Also, GameObject has a die() method which basicly removes the object from ObjectList arraylist which is in the ObjectManager object of GameManager.
- * NOTE: will be completed, in the future iteration.
+ * Also, GameObject has a die() method which basicly removes the object from alliesList or enemiesList and adds them into deadObject list  which are in the ObjectManager object of GameManager.
  */
 
 
@@ -63,7 +62,7 @@ public abstract class GameObject
 		}
 	}
 	//remove the object from the array lists, this will be used for the objects which are 
-	//outside of the screen boundries.
+	//outside of the screen boundries or the objects which do not have dead animations.
 	public void remove()
 	{
 		if(this instanceof Ally)
@@ -78,6 +77,7 @@ public abstract class GameObject
 			game.getObjectManager().decreaseEnemyCount();
 		}
 	}
+	//removes the object from the deadObjects list.
 	public void removeFromDead()
 	{
 			game.getObjectManager().getDeadObjects().remove(this);

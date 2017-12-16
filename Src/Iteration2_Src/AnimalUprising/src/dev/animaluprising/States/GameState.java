@@ -1,9 +1,17 @@
+/*
+ * Author: Bora Ecer
+ * GameState class
+ * Date: 1 November 2017
+ * Version: 13.12.2017
+ * Class which includes tick and render methods for the game state. 
+ */
 package dev.animaluprising.States;
 
 import java.awt.Graphics;
 
 import dev.animaluprising.GameControl.ImageManager;
 import dev.animaluprising.GameControl.ObjectManager;
+import dev.animaluprising.GameControl.ShopManager;
 import dev.animaluprising.GameModel.CastleObject;
 import dev.animaluprising.GameModel.GameObject;
 import dev.animaluprising.GameModel.HeroObject;
@@ -11,27 +19,29 @@ import dev.animaluprising.GameModel.HeroObject;
 public class GameState extends State
 {
 
+	//Attributes
 	private GameObject hero;
 	private GameObject castle;
 	private boolean gameOver;
 	private boolean victory;
+	//Constructor
 	public GameState()
 	{
 		super();
 		game.setObjectManager(new ObjectManager());
 		hero = new HeroObject(0,400,30,40);
-		castle = new CastleObject(800, 400, 100, 100);
+		castle = new CastleObject(750, 250, 300, 300);
 		gameOver = false;
 		victory = false;
 		game.getObjectManager().addObject(hero);
 		game.getObjectManager().addObject(castle);
-
 	}
 	
-	
+	//tick method
 	@Override
 	public void tick()
 	{
+		//Checks whether the game state is over or not.
 		if(((HeroObject)hero).getHealth() <= 0)
 		{
 			gameOver = true;
@@ -42,9 +52,10 @@ public class GameState extends State
 			victory = true;
 		}
 		
+		//if GameState is not over
 		if(!gameOver && !victory)
 		{
-
+			//updates the allies, and enemies
 			int i = 0; 
 			while(i < game.getObjectManager().getAllyCount())
 			{
@@ -62,6 +73,7 @@ public class GameState extends State
 			}
 			
 		}
+		//if the Game State is over, clears the allies and enemies list, and stops the cooldown timers.
 		else if (gameOver || victory )
 		{
 			//end the game process. 
@@ -73,30 +85,18 @@ public class GameState extends State
 		
 	}
 
+	//Render
 	@Override
 	public void render(Graphics graphics) 
 	{
 		if(!gameOver && !victory)
 		{
-			/*
-			graphics.drawRect(0,700, 900, 10);
-			graphics.setColor(Color.black);
-			graphics.fillRect(0, 700, 900, 10);
-			graphics.drawImage(ImageManager.heroImage, 50, 725, 100, 100, null);
-			graphics.drawRect(160, 700, 10, 200);
-			graphics.fillRect(160, 700, 10, 200);
-			graphics.drawImage(ImageManager.catImage, 210, 725, 100, 100, null);
-			graphics.drawString("Bear", 210, 850);
-			graphics.drawString("Food:"+ShopManager.getBearRequiredFood(), 210, 875);
-			*/
-			graphics.drawImage(ImageManager.floor, 0, 0, 900, 900, null);
-			//graphics.drawString("Mana" +((HeroObject)hero).getMana(), 0, 200);
+			//if game state is not over, renders the floor and renders the updated allies and enemies and the dead objects for death animations.
+			graphics.drawImage(ImageManager.floor, 0, 0, 1024, 568, null);
 			int i = 0; 
 			while(i < game.getObjectManager().getAllyCount())
 			{
 				try {
-					graphics.drawString("press 1-2 for soldier summon", 150, 150);
-					graphics.drawString("Press A-D to move hero", 150, 200);
 					((GameObject)(game.getObjectManager().getAllies().get(i))).render(graphics);
 					
 				} catch (Exception e) {
@@ -108,8 +108,6 @@ public class GameState extends State
 			while(i < game.getObjectManager().getEnemyCount())
 			{
 				try {
-					graphics.drawString("press 1-2 for soldier summon", 150, 150);
-					graphics.drawString("Press A-D to move hero", 150, 200);
 					((GameObject)(game.getObjectManager().getEnemies().get(i))).render(graphics);
 					
 				} catch (Exception e) {
@@ -129,20 +127,19 @@ public class GameState extends State
 				i++;
 			}
 		}
+		//if game ended with castle being destroyed, changes state to victory state.
 		else if (!gameOver && victory )
 		{
 			State.setState(game.getVictoryState());
 			game.setGameState(new GameState());
-			graphics.drawString("VICTORRRYYYYY!", 150, 150);
 		}
+
+		//if game ended with hero being dead, changes state to game over state.
 		else if(gameOver && !victory)
 		{
 			game.setGameState(new GameState());
 			graphics.drawString("GAME OVER", 150, 150);
 		}
-		
-
-		
 	}
 
 }
