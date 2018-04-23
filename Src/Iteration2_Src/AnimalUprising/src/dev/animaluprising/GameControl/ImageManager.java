@@ -1,15 +1,14 @@
-package dev.animaluprising.GameControl;
 
 /*
- *  Author: Bora Ecer
+ *  Author: Bora Ecer,Ata Gun Ogun
  *  Date: 1 November 2017
- *  Version: v1
+ *  Version: 12.12.2017
  *  ImageMAnager is the class for reading the images and setting them as static BufferedImage variables,
  *  This allows the program to read the images only once, and use the variables which the images are load into whenever it is necessary
  *  
  */
 
-
+package dev.animaluprising.GameControl;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -37,23 +36,27 @@ public class ImageManager
 	public static BufferedImage settingsButton;
 	public static BufferedImage howToButton;
 	public static BufferedImage quitButton;
-
 	public static BufferedImage backButton;
-
 	public static BufferedImage gameMenuBackground;
 	public static BufferedImage levelButton1,levelButton2,levelButton3,levelButton4,levelButton5;
-
 	public static BufferedImage gameGuide;
-
 	public static BufferedImage settingsBackground;
-	
 	public static BufferedImage monkeyAttackImage;
-
 	public static BufferedImage placeholder;
 	public static BufferedImage floor; 
-
 	public static BufferedImage victoryScreen;
-	public static BufferedImage mainMenuButton; 
+	public static BufferedImage mainMenuButton;
+	
+	
+	public static BufferedImage pauseBackground;
+	public static BufferedImage resumeButton;
+	public static BufferedImage resetLevelButton;
+	public static BufferedImage quitToMain;
+	public static BufferedImage shopBackground; 
+	
+	public static BufferedImage shadow;
+	public static BufferedImage blankButton;
+	public static BufferedImage gameOverScreen;
 			
 			
 	
@@ -108,10 +111,6 @@ public class ImageManager
 		crusaderImages[11] = loadImage("/Images/crusader/crusaderdying/6.PNG");
 		crusaderImages[12] = loadImage("/Images/crusader/crusaderdying/7.PNG");
 		crusaderImages[13] = loadImage("/Images/crusader/crusaderdying/8.PNG");
-		
-		heroImage = loadImage("/Images/Capture5.PNG");
-		enemyImage = loadImage("/Images/Capture3.PNG");
-		catImage = loadImage("/Images/Capture1.PNG");
 		
 		heroImages[0] = loadImage("/Images/Druid/DruidMove/6.PNG");
 		heroImages[1] = loadImage("/Images/Druid/DruidMove/7.PNG");
@@ -219,6 +218,7 @@ public class ImageManager
 		ravenImages[5] = loadImage("/Images/bird/right/2.PNG");
 		ravenImages[6] = loadImage("/Images/bird/right/3.PNG");
 		ravenImages[7] = loadImage("/Images/bird/right/4.PNG");
+		
 		placeholder = loadImage("/textures/placeholder.png");
 		
 		//everything after this is here to stay
@@ -238,12 +238,23 @@ public class ImageManager
 		levelButton4 =  loadImage("/textures/gamemenu/level4.png");
 		levelButton5 =  loadImage("/textures/gamemenu/level5.png");
 		
-		gameGuide =  loadImage("/textures/howto/howToPlay.png");
+		gameGuide =  loadImage("/textures/howto/howToPlay.jpg");
 		
 		settingsBackground =  loadImage("/textures/settings/background.png");
 		victoryScreen = loadImage("/textures/victory/background.png");
 		mainMenuButton = loadImage("/textures/victory/mainMenuButton.png");
 		
 		
+		pauseBackground = loadImage("/textures/pause/background.PNG");
+		resetLevelButton = loadImage("/textures/pause/restart.PNG");
+		resumeButton = loadImage("/textures/pause/resume.PNG");
+		quitToMain = loadImage("/textures/pause/quitToMain.PNG");
+		
+		shopBackground = loadImage("/textures/shop/background.png");
+		
+		shadow = loadImage("/textures/commons/shadow.png");
+		blankButton = loadImage("/textures/commons/blankButton.png");
+		
+		gameOverScreen = loadImage("/textures/gameover/background.png");
 	}
 }

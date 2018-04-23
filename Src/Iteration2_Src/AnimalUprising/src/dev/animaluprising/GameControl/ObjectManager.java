@@ -1,14 +1,11 @@
 /*
  * Author: Bora Ecer
  * Date: 1 November 2017
- * Version: v1
+ * Version: 10.12.2017
  * ObjectManager is the class for managing the GameObjects, 
- * it has addObject method which adds an GameObject to the ObjectList
- * and sets cooldown to the object added. 
- * Note: the cooldown mechanism does not work at the moment, it will be fixed for the next iteration
+ * it has addObject method which adds an Ally instances to allyList, and Enemy instances to enemyList and dead GameObjects to deadObjects list.
+ * and sets cooldown to the object added, and starts the timer. 
  */
-
-
 
 package dev.animaluprising.GameControl;
 
@@ -36,22 +33,24 @@ import dev.animaluprising.GameModel.Tortoise;
 
 public class ObjectManager 
 {
+	//Attributes
 	private ArrayList<Ally> allyList;
 	private ArrayList<Enemy> enemyList;
-
 	private ArrayList<GameObject> deadObjects;
 	private int allyCount, enemyCount,deadObjectCount;
 	private Timer objectTimer;
 	private boolean bearCD, dogCD, monkeyCD, tortoiseCD, infantryCD, knightCD, crusaderCD, healCD, speedCD, hailCD, ravenCD, monkeyAttackCD;
 	private boolean timerCancelled;
+	
+	//Constructor
 	public ObjectManager() 
 	{
 		objectTimer = new Timer();
-		allyCount = 0;
-		enemyCount = 0;
 		allyList = new ArrayList<>();
 		enemyList = new ArrayList<>();
 		deadObjects = new ArrayList<>();
+		allyCount = 0;
+		enemyCount = 0;
 		bearCD = false;
 		dogCD = false;
 		monkeyCD= false;
@@ -67,32 +66,33 @@ public class ObjectManager
 		timerCancelled = false;
 	}
 
-	public ArrayList<GameObject> getDeadObjects() {
-		return deadObjects;
-	}
 
-	public ArrayList<Ally> getAllies() {
-		return allyList;
-	}
-	public ArrayList<Enemy> getEnemies(){
-		return enemyList;
-	}
-	
-	
+	/*
+	 * addObject method, which takes a GameObject, and determies, which game object instance it belongs
+	 * and adds to allyList or enemyList based on that. It also sets a cooldown for the class of that instance
+	 * So that summoning that instance again is not possible for a while
+	 */
 	public void addObject(GameObject x)
 	{
+		//checks the instance, cd state and wheter or not the timer is cancelled
+		//The same process is applied for all objects.
 		if(x instanceof Bear && !bearCD && !timerCancelled)
 		{
+			//increases the count
 			increaseAllyCount();
+			//adds the object to the list
 			allyList.add((Bear)x);
+			//sets cooldown boolean true
 			bearCD = true;
+			//starts the timer for cooldown.
 			objectTimer.schedule(new TimerTask() {
 					
 					@Override
 					public void run() {
+						//after the timer is expired, the cooldown is set back to false.
 						bearCD = false;
 					}
-				}, 20*100);
+				}, 300);
 					
 		}
 		else if(x instanceof Dog && !dogCD && !timerCancelled)
@@ -107,7 +107,7 @@ public class ObjectManager
 				public void run() {
 					dogCD = false;
 				}
-			}, 20*100);
+			}, 200);
 		
 		}
 		else if(x instanceof Monkey && !monkeyCD && !timerCancelled)
@@ -122,7 +122,7 @@ public class ObjectManager
 					public void run() {
 						monkeyCD = false;
 					}
-				}, 20*100);
+				}, 400);
 			
 		}
 		else if(x instanceof Tortoise && !tortoiseCD && !timerCancelled)
@@ -136,7 +136,7 @@ public class ObjectManager
 					public void run() {
 						tortoiseCD = false;
 					}
-				}, 20*100);
+				}, 500);
 			
 		}
 		
@@ -151,7 +151,7 @@ public class ObjectManager
 					public void run() {
 						monkeyAttackCD = false;
 					}
-				}, 20*100);
+				}, 2000);
 			
 		}
 		else if(x instanceof Infantry && !infantryCD && !timerCancelled)
@@ -165,7 +165,7 @@ public class ObjectManager
 					public void run() {
 						infantryCD = false;
 					}
-				}, 20*100);
+				}, 200);
 			
 		}
 		else if(x instanceof Knight && !knightCD && !timerCancelled)
@@ -179,7 +179,7 @@ public class ObjectManager
 					public void run() {
 						knightCD = false;
 					}
-				}, 20*100);
+				}, 600);
 			
 		}
 		else if(x instanceof Crusader && !crusaderCD && !timerCancelled)
@@ -193,7 +193,7 @@ public class ObjectManager
 					public void run() {
 						crusaderCD = false;
 					}
-				}, 40*100);
+				}, 800);
 			
 		}
 		else if (x instanceof HeroObject && !timerCancelled)
@@ -217,7 +217,7 @@ public class ObjectManager
 				public void run() {
 					healCD = false;
 				}
-			}, 60*100);
+			}, 600);
 		
 			
 		}
@@ -232,7 +232,7 @@ public class ObjectManager
 				public void run() {
 					speedCD = false;
 				}
-			}, 60*100);
+			}, 600);
 		
 			
 		}
@@ -247,7 +247,7 @@ public class ObjectManager
 				public void run() {
 					ravenCD = false;
 				}
-			}, 60*100);
+			}, 600);
 		
 			
 		}
@@ -262,11 +262,31 @@ public class ObjectManager
 				public void run() {
 					hailCD = false;
 				}
-			}, 60*100);
+			}, 600);
 		
 			
 		}
 	}
+
+	//cancels objectTimer
+	public void stopTimer()
+	{
+		timerCancelled = true;
+		objectTimer.cancel();
+	}
+
+	//Getters and setters
+	public ArrayList<GameObject> getDeadObjects() {
+		return deadObjects;
+	}
+
+	public ArrayList<Ally> getAllies() {
+		return allyList;
+	}
+	public ArrayList<Enemy> getEnemies(){
+		return enemyList;
+	}
+	
 	public int getDeadObjectCount() {
 		return deadObjectCount;
 	}
@@ -321,12 +341,6 @@ public class ObjectManager
 
 	public boolean isMonkeyAttackCD() {
 		return monkeyAttackCD;
-	}
-
-	public void stopTimer()
-	{
-		timerCancelled = true;
-		objectTimer.cancel();
 	}
 		
 	public int getAllyCount()

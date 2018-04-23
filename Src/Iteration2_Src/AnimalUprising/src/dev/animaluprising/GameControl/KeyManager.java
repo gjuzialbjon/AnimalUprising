@@ -1,9 +1,8 @@
 /*
- * Author: Bora Ecer
+ * Author: Bora Ecer, Ata Gun Ogun
  * Date: 1 November 2017
  * Version: v1
  * InputManager is the class for getting the inputs from the user.
- * NOTE: the MouseListener will be added in the future iteration
  */
 
 
@@ -15,7 +14,7 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
 	private boolean[] keys;
-	public boolean left, right, summon1, summon2, summon3, summon4, skill1,skill2,skill3,skill4;
+	public boolean left, right, summon1, summon2, summon3, summon4, skill1,skill2,skill3,skill4,pause;
 	
 	public KeyManager() {	
 		keys = new boolean[256];
@@ -33,6 +32,7 @@ public class KeyManager implements KeyListener {
 		skill2  = keys[KeyEvent.VK_F2];
 		skill3  = keys[KeyEvent.VK_F3];
 		skill4  = keys[KeyEvent.VK_F4];
+		pause 	= keys[KeyEvent.VK_ESCAPE];
 	}
 	
 	@Override

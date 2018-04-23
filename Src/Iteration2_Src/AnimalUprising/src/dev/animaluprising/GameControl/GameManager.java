@@ -1,9 +1,25 @@
+/* Author: Ata Gün Öðün & Bora Ecer  
+ * Date: 1 November 2017
+ * Version: 1.12.2017
+ * GameManager is the main Control class of the game. It has every other Manager classes as attributes, 
+ * and has GameEngine, which enables it to connect with the UIManagement subsystem. Also, it has States objects,
+ * which are for representing and rendering different stages of the game: GameState, MenuState..
+ * It applies Singleton Design Pattern to provide only one GameManager object is passed through the other subsystems.
+ * The game is started with the call of start() method, which initially calls the inititilize() method which is only going to be called once
+ * the initilize() method initilizes the gameEngine, ImageManager and States objects. 
+ * Also it adds the KeyManager as KeyListener to the GameEngine's frame & MouseManager as MouseListener.
+ * GameManager is the class which has the game loop in it, which is the loop continues until the end of the game. 
+ * In each iteraiton of the game loop, it calls for tick() and render() method of the current game state. 
+ * Which then calls the needed render() and tick() methods, i.e if the current state is GameState, 
+ * then the GameState will call the tick() and render() methods of each GameObject created.   
+ */
 package dev.animaluprising.GameControl;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import dev.animalgame.display.Display;
+
 import dev.animaluprising.States.GameMenuState;
+import dev.animaluprising.States.GameOverState;
 import dev.animaluprising.States.GameState;
 import dev.animaluprising.States.HowToPlayState;
 import dev.animaluprising.States.MainMenuState;
@@ -12,46 +28,44 @@ import dev.animaluprising.States.SettingsState;
 import dev.animaluprising.States.ShopState;
 import dev.animaluprising.States.State;
 import dev.animaluprising.States.VictoryState;
+import dev.animaluprising.UIManagement.GameEngine;
 
 public class GameManager implements Runnable{
 	
-	private int gameWidth=1024,gameHeight=768; // make these final maybe?
-	private String gameTitle="Animal Uprising"; // make this final maybe?
-	
-	private Display display;
-	
+	private int gameWidth=1024,gameHeight=768;
+	private String gameTitle="Animal Uprising"; 
+	private int coin = 0;
+	private GameEngine display;
 	private Thread thread;
 	private boolean isRunning;
-	
 	private BufferStrategy bufferStrategy;
 	private Graphics g;
-	
+	private SoundManager soundManager;
 	//States
-	private State gameState;	//Update: make getter in game manager TODO might wanna add a getter for this
+	private State gameState;	
 	private State mainMenuState;
 	private State shopState;
 	private State gameMenuState;
-	private State howToPlayState;	//note: public?
+	private State howToPlayState;	
 	private State pauseState;	
 	private State  settingsState;
 	private VictoryState victoryState;
 	
 	//input
-	private KeyManager keyManager;//TODO move to gamemanager
-	private MouseManager mouseManager;//TODO move to gamemanager
+	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
-	
-	//camera
-	//private GameCamera gameCamera;
 	
 	private ObjectManager objectManager;
 	private CollisionManager collisionManager;
+	private State gameOverState;
 
 	
 	private GameManager() {
-		//all the field values of the game are the default values given above ie gameTitle gameWidth etc
+		//all the field values of the game are the default values given above i.e gameTitle gameWidth etc
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
+		soundManager = new SoundManager();
 	}
 
 	
@@ -67,22 +81,19 @@ public class GameManager implements Runnable{
 
  
 	private void initialize(){
-		this.display = new Display(gameTitle,gameWidth,gameHeight);
-		display.getFrame().addKeyListener(keyManager);	// TODO check if we need to add this to canvas too
+		this.display = new GameEngine(gameTitle,gameWidth,gameHeight);
+		soundManager.play();
+		display.getFrame().addKeyListener(keyManager);	
 		
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
-		display.getCanvas().addMouseListener(mouseManager);//TODO check if needed
+		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		
 		
 		setCollisionManager(new CollisionManager());
 		
 		ImageManager.init();
-		
-		//gameCamera = new GameCamera(0,0); //UPDATE: move to game manager TODO might wanna move this to GameState since I think its only useful there.
-		
-		//TODO we can do the loading of a saved game here I guess
 		
 		//initialize all the states
 		gameState = new GameState( );
@@ -93,10 +104,10 @@ public class GameManager implements Runnable{
 		mainMenuState = new MainMenuState( );
 		shopState = new ShopState( );
 		victoryState = new VictoryState();
-		//add more states
+		gameOverState = new GameOverState();
 		
 		
-		State.setState(mainMenuState); //THIS CAN CHANGE, YOU CAN MAKE THIS MENU STATE
+		State.setState(mainMenuState); 
 	
 	}
 	
@@ -128,8 +139,6 @@ public class GameManager implements Runnable{
 		//start drawing{
 		if(State.getState() != null)
 			State.getState().render(g); 
-		
-		
 		//end drawing }
 		
 		bufferStrategy.show();
@@ -139,16 +148,14 @@ public class GameManager implements Runnable{
 	@Override
 	public void run() {
 		initialize();
-		
-		int fps = 15;
-		
+		int fps = 60;
 		double timePerTick = 1000000000/fps;
 		double delta = 0;
 		long now;
 		long lastTime = System.nanoTime();
 		
-		long timer=0;//for fps counter, rename maybe?
-		int ticks=0;//for fps counter, rename maybe?
+		long timer=0;
+		int ticks=0;
 		
 		/*
 		 * Game loop:
@@ -156,6 +163,12 @@ public class GameManager implements Runnable{
 		 * 	render(draw) everything to screen
 		 */
 		while(isRunning){
+			
+			if(State.getState() instanceof GameState)
+			{
+				timePerTick = 1000000000/15;
+			}
+			
 			now = System.nanoTime();
 			delta += (now-lastTime)/timePerTick;
 			timer += now-lastTime;
@@ -205,23 +218,19 @@ public class GameManager implements Runnable{
 	
 
 	
-	public KeyManager getKeyManager() {//TODO move to gamemanager
+	public KeyManager getKeyManager() {
 		return keyManager;
 	}
 	
 	
-	public MouseManager getMouseManager() {//TODO move to gamemanager
+	public MouseManager getMouseManager() {
 		return mouseManager;
 	}
 	
-	
-	
-	/**
-	 *	UPDATE: move to game manager TODO might wanna move this to gamestate since I think it's only used there 
-	 */
-	/*public GameCamera getGameCamera(){
-		return gameCamera;
-	}*/
+
+	public SoundManager getSoundManager() {
+		return soundManager;
+	}
 
 
 
@@ -339,6 +348,22 @@ public class GameManager implements Runnable{
 	public VictoryState getVictoryState() {
 		return victoryState;
 	}
+	
+	public State getGameOverState() {
+		return gameOverState;
+	}
+	
+	public int getCoin() {
+		return coin;
+	}
+
+	public void setCoin(int coin) {
+		this.coin = coin;
+	}
+
+
+
+
 
 
 

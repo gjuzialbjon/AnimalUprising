@@ -1,26 +1,32 @@
+/*
+ * Author: Bora Ecer
+ * Date: 15.12.2017
+ * Class for ShopMenu logic, which also provides the attributes of the GameModel Objects.
+ */
 package dev.animaluprising.GameControl;
 
 public class ShopManager
 {
 	
-	//TODO coins will be added.
-	private static int maxHeroHealth = 600;
+	GameManager game = GameManager.getGame();
+	private static int maxHeroHealth = 5000;
 	private static int maxLHeroMana = 100;
-	private static int maxDogHealth = 800;
-	private static int maxBearHealth = 200;
-	private static int maxMonkeyHealth= 300;
-	private static int maxTortoiseHealth = 600;
-	private static int bearDamage = 50;
+	private static int maxDogHealth = 500;
+	private static int maxBearHealth = 700;
+	private static int maxMonkeyHealth= 400;
+	private static int maxTortoiseHealth = 1000;
+	private static int bearDamage = 10;
 	private static int monkeyDamage = 15;
-	private static int dogDamage = 10;
-	private static int healAmount = -10;
+	private static int dogDamage = 5;
+	private static int healAmount = -20;
 	private static int tortoiseDamage=0;
 	private static int dogRequiredFood = 10;
 	private static int bearRequiredFood = 20;
 	private static int monkeyRequiredFood = 30;
 	private static int tortoiseRequiredFood = 40;
+	private static int hailDamage = 30;
 	private static int maxHeroFood = 100;
-	private static int ravenDamage = 50;
+	private static int ravenDamage = 25;
 	private static float heroSpeed = 3.0f;
 	private static float dogSpeed = 3.0f;
 	private static float bearSpeed = 3.0f;
@@ -30,6 +36,115 @@ public class ShopManager
 	private static int speedRequiredMana = 20;
 	private static int hailRequiredMana = 20;
 	private static int ravenRequiredMana = 20;
+	
+	public int dogGold = 50;
+	public int bearGold = 50;
+	public int monkeyGold = 50;
+	public int tortoiseGold = 50;
+	public int healGold = 50;
+	public int speedGold = 50;
+	
+	public int ravenGold = 50;
+	public int hailGold = 50;
+	
+	public ShopManager()
+	{
+		
+	}
+	
+	public void updateDamage(String objectName)
+	{
+		if(objectName.equals("dev.animaluprising.GameModel.Bear") && game.getCoin() >= bearGold )
+		{
+			setBearDamage(getBearDamage()+10);
+			game.setCoin(game.getCoin()-bearGold);
+			bearGold += 50;
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.Dog") && game.getCoin() >= dogGold)
+		{
+			setDogDamage(getDogDamage() +10);
+			game.setCoin(game.getCoin()-dogGold);
+			dogGold += 50;
+		}
+
+		else if(objectName.equals("dev.animaluprising.GameModel.Monkey") && game.getCoin() >= monkeyGold)
+		{
+			setMonkeyDamage(getMonkeyDamage()+10);
+			game.setCoin(game.getCoin()-monkeyGold);
+			monkeyGold += 50;
+		}
+
+		else if(objectName.equals("dev.animaluprising.GameModel.RavenStrike") && game.getCoin() >= ravenGold)
+		{
+			setRavenDamage(getRavenDamage() +20);
+			game.setCoin(game.getCoin()-ravenGold);
+			ravenGold += 100;
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.HailStrike") && game.getCoin() >= hailGold)
+		{
+			setHailDamage(getHailDamage()+20);
+			game.setCoin(game.getCoin()-hailGold);
+			hailGold += 100;
+
+		} 
+	}
+	public void upgradeMaxHealth(String objectName)
+	{
+		if(objectName.equals("dev.animaluprising.GameModel.Bear") && game.getCoin() >= bearGold )
+		{
+			setMaxBearHealth(getMaxBearHealth()+10);
+			game.setCoin(game.getCoin()-bearGold);
+			bearGold += 50;
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.Dog") && game.getCoin() >= dogGold)
+		{
+			setMaxDogHealth(getMaxDogHealth()+10);
+			game.setCoin(game.getCoin()-dogGold);
+			dogGold += 50;
+		}
+
+		else if(objectName.equals("dev.animaluprising.GameModel.Monkey") && game.getCoin() >= monkeyGold)
+		{
+			setMaxMonkeyHealth(getMaxMonkeyHealth()+10);
+			game.setCoin(game.getCoin()-monkeyGold);
+			monkeyGold += 50;
+		}
+
+		else if(objectName.equals("dev.animaluprising.GameModel.Tortoise") && game.getCoin() >= tortoiseGold)
+		{
+			setMaxTortoiseHealth(getMaxTortoiseHealth() + 50);
+			game.setCoin(game.getCoin()-tortoiseGold);
+			tortoiseGold += 100;
+		}
+	}
+	public void decreaseMana(String objectName)
+	{
+		if(objectName.equals("dev.animaluprising.GameModel.SpeedBuffSkill") && game.getCoin() >= speedGold)
+		{
+			setSpeedRequiredMana(getSpeedRequiredMana()-10);
+			game.setCoin(game.getCoin()-speedGold);
+			speedGold += 100;
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.HealSkill") && game.getCoin() >= healGold)
+		{
+			setHealRequiredMana(getHealRequiredMana()-10);
+			game.setCoin(game.getCoin()-healGold);
+			healGold += 100;
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.RavenStrike") && game.getCoin() >= ravenGold)
+		{
+			setRavenRequiredMana(getRavenRequiredMana()-10);
+			game.setCoin(game.getCoin()-ravenGold);
+			ravenGold += 100;
+
+		}
+		else if(objectName.equals("dev.animaluprising.GameModel.HailStrike") && game.getCoin() >= hailGold)
+		{
+			setHailRequiredMana(getHailRequiredMana()-10);
+			game.setCoin(game.getCoin()-hailGold);
+			hailGold += 100;
+		}
+	}
 	
 	public static int getDamage(String objectName)
 	{
@@ -61,7 +176,7 @@ public class ShopManager
 		}
 		else if(objectName.equals("dev.animaluprising.GameModel.HailStrike"))
 		{
-			return getRavenDamage();
+			return getHailDamage();
 		}
 		else 
 			return 0;
@@ -181,7 +296,7 @@ public class ShopManager
 	public static void setMaxHeroHealth(int maxHeroHealth) {
 		ShopManager.maxHeroHealth = maxHeroHealth;
 	}
-	public static int getMaxLHeroMana() {
+	public static int getMaxHeroMana() {
 		return maxLHeroMana;
 	}
 	public static void setMaxLHeroMana(int maxLHeroMana) {
@@ -253,6 +368,14 @@ public class ShopManager
 	public static void setTortoiseRequiredFood(int tortoiseRequiredFood) {
 		ShopManager.tortoiseRequiredFood = tortoiseRequiredFood;
 	}
-	
+
+	public static int getHailDamage() {
+		return hailDamage;
+	}
+
+	public static void setHailDamage(int hailDamage) {
+		ShopManager.hailDamage = hailDamage;
+	}
+
 	
 }

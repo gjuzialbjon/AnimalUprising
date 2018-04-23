@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 
 import dev.animaluprising.GameControl.ImageManager;
 
+/**
+ * @author Ata Gun Ogun
+ */
 public class UIButton extends UIComponent {
 //basip drag out etme olayi ekle
 	
@@ -14,6 +17,7 @@ public class UIButton extends UIComponent {
 	public UIButton(float x, float y, int w, int h,ClickAction a) {
 		super(x, y, w, h);
 		action=a;
+		texture = ImageManager.blankButton;
 	}
 	
 	//TODO add constructor /w bufferedimage to uicomponent
@@ -24,11 +28,9 @@ public class UIButton extends UIComponent {
 
 	@Override
 	public void render(Graphics g) {
-		if(pressed){
-			g.drawImage(ImageManager.placeholder/*TODO make this pressed image*/, (int)x, (int)y,width,height, null);
-			return;
-		}else
 			super.render(g);
+			if(pressed)
+				g.drawImage(ImageManager.shadow/*TODO make this pressed image*/, (int)x, (int)y,width,height, null);
 		
 	}
 
